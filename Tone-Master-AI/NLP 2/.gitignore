@@ -1,0 +1,26 @@
+# Streamlit Secrets - NEVER COMMIT THIS
+.streamlit/secrets.toml
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
