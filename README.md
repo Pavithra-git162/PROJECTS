@@ -88,13 +88,14 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## HOW THE SYSTEM WORKS
-### Enter Email Content & Select the tone
+# HOW THE SYSTEM WORKS
+## Enter Email Content & Select the tone
 
 <img width="1080" height="897" alt="ui" src="https://github.com/user-attachments/assets/040df517-242f-4f1d-9202-dbd4c6e8388a" />
 
-### AI-Generated Email Output
+## AI-Generated Email Output
 
+<img width="929" height="659" alt="Screenshot 2026-02-06 224209" src="https://github.com/user-attachments/assets/28019260-6ba7-4289-b369-109087831362" />
 
 
 
