@@ -88,7 +88,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 ## TOOL PAGE
-![Tone Master AI Interface](screenshots/ui.png)
+![Tone Master AI Interface](Pictures/ui.png)
 
 
 
