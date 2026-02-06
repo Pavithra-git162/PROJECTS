@@ -19,5 +19,4 @@
 Writing professional emails is a challenge for students and professionals, and informal or unclear messages can negatively affect communication and professional image.
 
 This project aims to build an AI-powered Email Tone Improver that automatically rewrites emails into different tone styles such as formal, professional, polite, and casual using Large Language Models (LLMs) to enhance clarity, tone appropriateness, and communication quality.
-
 ---
