@@ -23,7 +23,7 @@ This project aims to build an AI-powered Email Tone Improver that automatically 
 ## 💡 Key Features  
 
 ###  AI Tone Transformation  
-- Rewrites emails using **Google Gemini 2.5 Flash LLM**
+- Implemented zero-shot instruction prompting with Google Gemini LLM.
 - Supports **5 tone styles**:
   - Professional  
   - Casual  
