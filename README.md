@@ -97,7 +97,7 @@ streamlit run app.py
 
 <img width="929" height="659" alt="Screenshot 2026-02-06 224209" src="https://github.com/user-attachments/assets/28019260-6ba7-4289-b369-109087831362" />
 
-# FUTURE IMPROVEMENTS
+# 🧩 FUTURE IMPROVEMENTS
 
 ## Multi-Language Support  
 Add support for multiple languages (Tamil, English, Hindi, etc.) using multilingual LLM models to rewrite emails in different languages.
@@ -105,10 +105,10 @@ Add support for multiple languages (Tamil, English, Hindi, etc.) using multiling
 ## Plagiarism / Similarity Score 
 Implement semantic similarity and plagiarism detection using cosine similarity or embedding models to measure how much the rewritten email differs from the original text.
   
-## User Authentication**  
+## User Authentication  
 Add login/signup functionality so users can maintain personal email history and preferences.
 
-## Email History & Save Feature**  
+## Email History & Save Feature  
 Store user-generated emails in a database or local storage so users can view, edit, and reuse previous emails.
 
 
