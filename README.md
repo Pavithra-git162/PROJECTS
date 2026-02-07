@@ -97,6 +97,10 @@ streamlit run app.py
 
 <img width="929" height="659" alt="Screenshot 2026-02-06 224209" src="https://github.com/user-attachments/assets/28019260-6ba7-4289-b369-109087831362" />
 
+# Future Improvements 
+**Multi-Language Support**  
+Add support for multiple languages (Tamil, English, Hindi, etc.) using multilingual LLM models to rewrite emails in different languages.
+
 
 
 
