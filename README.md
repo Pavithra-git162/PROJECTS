@@ -1,4 +1,4 @@
-#  Tone Master AI – Email Tone Transformation System
+#  Tone Master AI 
 Tone Master AI is an AI-powered platform that rewrites emails into clear, concise, and context-aware communication, tailored to different tones and languages.
 
 
