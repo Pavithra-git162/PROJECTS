@@ -422,7 +422,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     if not st.session_state.logged_in:
-        mode = st.radio("", ["Login", "Sign Up"], horizontal=True, label_visibility="collapsed")
+        mode = st.radio("", ["Login", "Sign Up"], horizontal=True)
 
         if mode == "Login":
             st.markdown("<div style='font-size:13px;color:#C8DFF2;margin-bottom:10px;font-weight:500;'><h4>Sign in to your account</h4></div>", unsafe_allow_html=True)
