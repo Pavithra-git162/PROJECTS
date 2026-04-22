@@ -6,18 +6,15 @@ Tone Master AI is an AI-powered platform that rewrites emails into clear, concis
 
 ---
 
-## 🌐 Live Demo  
-**Try it here:**  
+##  Live Demo   
 🔗 *https://tone-master-ai.streamlit.app/*
 
 ---
 
 ##  Project Objective  
-Writing professional emails is a challenge for students and professionals, and informal or unclear messages can negatively affect communication and professional image.
+Writing professional emails is a challenge for students and professionals, and informal or unclear messages can negatively affect communication and professional image. This project aims to build an AI-powered Email Tone Improver that automatically rewrites emails into different tone and languages.
 
-This project aims to build an AI-powered Email Tone Improver that automatically rewrites emails into different tone styles such as formal,professional,polite,and casual using Large Language Models(LLMs) to enhance clarity,tone appropriateness, and communication quality.
-
-## 💡 Key Features  
+##  Key Features  
 
 ###  AI Tone Transformation  
 - Implemented zero-shot instruction prompting with Google Gemini LLM.
