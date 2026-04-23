@@ -21,11 +21,8 @@ Writing professional emails is a challenge for students and professionals, and i
 
 
 ##  Tech Stack  
-### Frontend UI
- - Streamlit UI
-   
-### Backend
- - Python
+### Backend & UI
+- Streamlit
   
 ### Database
 - SQLite
