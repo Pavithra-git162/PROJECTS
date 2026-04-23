@@ -38,12 +38,7 @@ Writing professional emails is a challenge for students and professionals, and i
    
 
 ##  Project Structure  
-Tone-Master-AI/
-│
-├── app.py
-├── requirements.txt
-├── README.md
-└── .gitignore
+<pre> ```bash Tone-Master-AI/ │ ├── app.py ├── requirements.txt ├── README.md └── .gitignore ``` </pre>
 
 
 ## Installation(Local Setup)
