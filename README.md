@@ -38,13 +38,12 @@ Writing professional emails is a challenge for students and professionals, and i
    
 
 ##  Project Structure  
-
 Tone-Master-AI/
-|
-├── app.py
-├── requirements.txt
-├── README.md
-├── .gitignore
+│
+├── app.py             
+├── requirements.txt   
+├── README.md          
+├── .gitignore 
 
 
 ## Installation(Local Setup)
