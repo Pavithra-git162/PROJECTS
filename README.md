@@ -20,66 +20,56 @@ Writing professional emails is a challenge for students and professionals, and i
 -  Deployed on Streamlit Cloud for real-time access
 
 
+##  Tech Stack  
+### Frontend UI
+ - Streamlit UI
+   
+### Backend
+ - Python
+  
+### Database
+- SQLite
 
- 
+### Machine Learning/NLP
+- Scikit-learn
 
+### AI Integration
+- Google Gemini API(Gemini 2.5 Flash)
+   
 
+##  Project Structure  
 
-
----
-
-## 🛠 Tech Stack  
-
-| Category | Technology |
-|-----------|------------|
-| Language | Python |
-| Frontend | Streamlit |
-| AI Model | Google Gemini 2.5 Flash |
-| NLP | Regex, Prompt Engineering |
-| UI Styling | Streamlit built-in components |
-| Version Control | Git & GitHub |
-| Deployment | Streamlit Cloud |
-
-
----
-## 📂 Project Structure  
-
-```bash
 Tone-Master-AI/
 ├── app.py
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
-```
 
-## ▶️ How to Run Locally
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
 
-# HOW THE SYSTEM WORKS
-## Enter Email Content & Select the tone
+## Installation(Local Setup)
+### Clone the repository
+- git clone https://github.com/your-username/Tone-Master-AI.git
+- cd Tone-Master-AI
 
-<img width="1080" height="897" alt="ui" src="https://github.com/user-attachments/assets/040df517-242f-4f1d-9202-dbd4c6e8388a" />
+### Install dependencies
+- pip install -r requirements.txt
 
-## AI-Generated Email Output
+### Run the app
+- streamlit run app.py
 
-<img width="929" height="659" alt="Screenshot 2026-02-06 224209" src="https://github.com/user-attachments/assets/28019260-6ba7-4289-b369-109087831362" />
-
-# 🧩 FUTURE IMPROVEMENTS
-
-## Multi-Language Support  
-Add support for multiple languages (Tamil, English, Hindi, etc.) using multilingual LLM models to rewrite emails in different languages.
-
-## Plagiarism / Similarity Score 
-Implement semantic similarity and plagiarism detection using cosine similarity or embedding models to measure how much the rewritten email differs from the original text.
+## Environment Setup
+ Create .streamlit/secrets.toml and add:
+- GEMINI_API_KEY = "your_api_key_here"
   
-## User Authentication  
-Add login/signup functionality so users can maintain personal email history and preferences.
+## Future Enhancements 
+- Integration with email platforms (Gmail/Outlook)
+- Voice-to-text input 
 
-## Email History & Save Feature  
-Store user-generated emails in a database or local storage so users can view, edit, and reuse previous emails.
+
+
+
+
+
 
 
 
