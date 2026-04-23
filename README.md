@@ -48,7 +48,7 @@ Writing professional emails is a challenge for students and professionals, and i
  ``` 
 
 
-## Installation(Local Setup)
+## Installation & Setup
 ### Clone the repository
 - git clone https://github.com/your-username/Tone-Master-AI.git
 - cd Tone-Master-AI
