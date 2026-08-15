@@ -47,7 +47,7 @@ Writing professional emails is a challenge for students and professionals, and i
 
 ## Installation & Setup
 ### Clone the repository
-- git clone https://github.com/Pavithra-git162/PROJECTS.git
+- git clone *https://github.com/Pavithra-git162/PROJECTS.git*
 - cd Tone-Master-AI
 
 ### Install dependencies
