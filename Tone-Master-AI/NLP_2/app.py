@@ -153,10 +153,10 @@ def compute_similarity(t1, t2):
     except: return 0.0
 
 def similarity_label(s):
-    if s >= 75: return "Very similar to original", "#92400E"
-    if s >= 50: return "Moderately changed", "#1E40AF"
-    if s >= 25: return "Significantly rewritten", "#14532D"
-    return "Completely transformed", "#4C1D95"
+    if s >= 75: return "Very similar to original", "#0D1E32"
+    if s >= 50: return "Moderately changed", "#1B3557"
+    if s >= 25: return "Significantly rewritten", "#2E5A8A"
+    return "Completely transformed", "#5C7FA6"
 
 # ════════════════════════════════════════════════
 # PAGE CONFIG
@@ -167,100 +167,153 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap');
 
+:root {
+    --navy: #1B3557;
+    --navy-dark: #0D1E32;
+    --navy-mid: #2E5A8A;
+    --navy-soft: #5C7FA6;
+    --navy-tint: #EAF0F8;
+    --navy-tint-2: #DCE6F2;
+    --navy-border: #B8CCE0;
+    --white: #FFFFFF;
+}
+
 html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
-.stApp { background-color: #F0F4FA; }
+.stApp { background-color: var(--navy-tint); }
 #MainMenu, footer{ visibility: hidden; }
 .block-container { padding: 1.5rem 2rem 2rem 2rem; max-width: 1100px; }
 
 
 /* SIDEBAR */
-section[data-testid="stSidebar"] { background: #1B3557 !important; }
-section[data-testid="stSidebar"] * { color: #FFFFFF !important; }
+section[data-testid="stSidebar"] { background: var(--navy) !important; }
+section[data-testid="stSidebar"] * { color: var(--white) !important; }
 section[data-testid="stSidebar"] .stTextInput input {
-    background: #FFFFFF !important;
-    border: 2px solid #4A90C4 !important;
-    color: #0D1E32 !important;
+    background: var(--white) !important;
+    border: 2px solid var(--navy-soft) !important;
+    color: var(--navy-dark) !important;
     border-radius: 7px !important;
     font-size: 14px !important;
     padding: 8px 12px !important;
-    caret-color: #1B3557 !important;
+    caret-color: var(--navy) !important;
 }
 section[data-testid="stSidebar"] .stTextInput input:focus {
-    border-color: #FFFFFF !important;
+    border-color: var(--white) !important;
     box-shadow: 0 0 0 3px rgba(255,255,255,0.2) !important;
     outline: none !important;
 }
 section[data-testid="stSidebar"] .stTextInput input::placeholder {
-    color: #7A9AB8 !important; font-size: 13px !important;
+    color: #A8C0D8 !important; font-size: 13px !important;
 }
 section[data-testid="stSidebar"] .stTextInput label {
     font-size: 13px !important; font-weight: 600 !important;
-    color: #C8DFF2 !important; margin-bottom: 3px !important;
+    color: var(--white) !important; margin-bottom: 3px !important;
 }
 section[data-testid="stSidebar"] .stRadio label {
-    font-size: 14px !important; font-weight: 600 !important; color: #FFFFFF !important;
+    font-size: 14px !important; font-weight: 600 !important; color: var(--white) !important;
+}
+
+/* Sidebar buttons: navy sidebar bg, so buttons need to be white to stand out,
+   with navy text — kept consistent whatever state (hover/active/focus) */
+section[data-testid="stSidebar"] .stButton>button,
+section[data-testid="stSidebar"] .stButton>button p,
+section[data-testid="stSidebar"] .stButton>button div,
+section[data-testid="stSidebar"] .stButton>button span {
+    color: var(--navy-dark) !important;
 }
 section[data-testid="stSidebar"] .stButton>button {
-    background: #4F46E5 !important; color: #FFFFFF !important;
-    border: none !important; font-weight: 600 !important;
+    background: var(--white) !important;
+    border: 2px solid var(--white) !important; font-weight: 600 !important;
     border-radius: 7px !important; width: 100% !important;
     padding: 10px 16px !important; font-size: 14px !important; margin-top: 3px !important;
 }
-section[data-testid="stSidebar"] .stButton>button:hover { background: #4338CA !important; }
+section[data-testid="stSidebar"] .stButton>button:hover {
+    background: var(--navy-tint) !important; border-color: var(--navy-tint) !important;
+}
 section[data-testid="stSidebar"] .stButton>button:active,
 section[data-testid="stSidebar"] .stButton>button:focus,
 section[data-testid="stSidebar"] .stButton>button:focus:not(:active) {
-    background: #4338CA !important; color: #FFFFFF !important;
+    background: var(--navy-tint) !important;
+    box-shadow: none !important; outline: none !important;
+    border-color: var(--navy-tint) !important;
+}
+section[data-testid="stSidebar"] .stButton>button:active *,
+section[data-testid="stSidebar"] .stButton>button:focus *,
+section[data-testid="stSidebar"] .stButton>button:hover * {
+    color: var(--navy-dark) !important;
+}
+
+/* MAIN BUTTONS — force text color on every possible inner element and state,
+   so nothing ever renders blank/white-on-white when clicked or focused */
+.stButton>button,
+.stButton>button p,
+.stButton>button div,
+.stButton>button span {
+    color: var(--navy-dark) !important;
+}
+.stButton>button {
+    background: var(--white) !important;
+    border: 2px solid var(--navy-border) !important; border-radius: 8px !important;
+    font-size: 14px !important; font-weight: 500 !important; transition: all 0.15s !important;
+}
+.stButton>button:hover,
+.stButton>button:hover p,
+.stButton>button:hover div,
+.stButton>button:hover span {
+    border-color: var(--navy) !important; background: var(--navy-tint) !important;
+    color: var(--navy-dark) !important;
+}
+.stButton>button:active,
+.stButton>button:focus,
+.stButton>button:focus:not(:active),
+.stButton>button:active p, .stButton>button:active div, .stButton>button:active span,
+.stButton>button:focus p, .stButton>button:focus div, .stButton>button:focus span {
+    background: var(--navy-tint-2) !important;
+    color: var(--navy-dark) !important;
+    border-color: var(--navy) !important;
     box-shadow: none !important; outline: none !important;
 }
 
-/* Active nav button highlight */
-section[data-testid="stSidebar"] .stButton>button.nav-active {
-    background: #FFFFFF !important; color: #1B3557 !important;
-}
-
-/* MAIN BUTTONS */
-.stButton>button {
-    background: #FFFFFF !important; color: #0D1E32 !important;
-    border: 2px solid #B8CCE0 !important; border-radius: 8px !important;
-    font-size: 14px !important; font-weight: 500 !important; transition: all 0.15s !important;
-}
-.stButton>button:hover {
-    border-color: #4F46E5 !important; background: #EEECFC !important;
-    color: #0D1E32 !important;
-}
-.stButton>button[kind="primary"] {
-    background: #4F46E5 !important; color: #FFFFFF !important;
+/* Primary (navy) buttons — e.g. Rewrite Email, selected tone */
+.stButton>button[kind="primary"],
+button[data-testid="stBaseButton-primary"],
+.stButton>button[kind="primary"] p,
+.stButton>button[kind="primary"] div,
+.stButton>button[kind="primary"] span {
+    background: var(--navy) !important; color: var(--white) !important;
     border: none !important; font-size: 15px !important; font-weight: 600 !important;
     padding: 12px 0 !important; border-radius: 8px !important;
 }
-.stButton>button[kind="primary"]:hover {
-    background: #4338CA !important; color: #FFFFFF !important;
+.stButton>button[kind="primary"]:hover,
+.stButton>button[kind="primary"]:hover p,
+.stButton>button[kind="primary"]:hover div,
+.stButton>button[kind="primary"]:hover span {
+    background: var(--navy-mid) !important; color: var(--white) !important;
 }
-
-/* Prevent primary (indigo) buttons from flashing white / losing text on click-focus */
 .stButton>button[kind="primary"]:active,
 .stButton>button[kind="primary"]:focus,
-.stButton>button[kind="primary"]:focus:not(:active) {
-    background: #4338CA !important;
-    color: #FFFFFF !important;
+.stButton>button[kind="primary"]:focus:not(:active),
+.stButton>button[kind="primary"]:active p, .stButton>button[kind="primary"]:active div, .stButton>button[kind="primary"]:active span,
+.stButton>button[kind="primary"]:focus p, .stButton>button[kind="primary"]:focus div, .stButton>button[kind="primary"]:focus span {
+    background: var(--navy-mid) !important;
+    color: var(--white) !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
 }
 
 /* Secondary (unselected) buttons — lock background AND text color so nothing
-   goes white-on-white when tapped/focused, e.g. the tone selector buttons */
+   goes blank when tapped/focused, e.g. the tone selector buttons */
 .stButton>button[kind="secondary"],
-.stButton>button:not([kind="primary"]) {
-    background: #FFFFFF !important;
-    color: #0D1E32 !important;
+.stButton>button:not([kind="primary"]),
+.stButton>button[kind="secondary"] p, .stButton>button[kind="secondary"] div, .stButton>button[kind="secondary"] span {
+    background: var(--white) !important;
+    color: var(--navy-dark) !important;
 }
 .stButton>button[kind="secondary"]:hover,
 .stButton>button:not([kind="primary"]):hover {
-    border-color: #4F46E5 !important;
-    background: #EEECFC !important;
-    color: #0D1E32 !important;
+    border-color: var(--navy) !important;
+    background: var(--navy-tint) !important;
+    color: var(--navy-dark) !important;
 }
 .stButton>button[kind="secondary"]:active,
 .stButton>button[kind="secondary"]:focus,
@@ -268,36 +321,58 @@ section[data-testid="stSidebar"] .stButton>button.nav-active {
 .stButton>button:not([kind="primary"]):active,
 .stButton>button:not([kind="primary"]):focus,
 .stButton>button:not([kind="primary"]):focus:not(:active) {
-    background: #FFFFFF !important;
-    color: #0D1E32 !important;
-    border-color: #4F46E5 !important;
+    background: var(--navy-tint-2) !important;
+    color: var(--navy-dark) !important;
+    border-color: var(--navy) !important;
     box-shadow: none !important;
     outline: none !important;
 }
 
 /* TEXT AREA */
 .stTextArea textarea {
-    background: #FFFFFF !important; border: 2px solid #B8CCE0 !important;
+    background: var(--white) !important; border: 2px solid var(--navy-border) !important;
     border-radius: 10px !important; font-size: 15px !important;
-    color: #0D1E32 !important; padding: 12px !important; line-height: 1.7 !important;
-    caret-color: #1B3557 !important;
+    color: var(--navy-dark) !important; padding: 12px !important; line-height: 1.7 !important;
+    caret-color: var(--navy) !important;
 }
 .stTextArea textarea:focus {
-    border-color: #4F46E5 !important;
-    box-shadow: 0 0 0 3px rgba(79,70,229,0.15) !important;
+    border-color: var(--navy) !important;
+    box-shadow: 0 0 0 3px rgba(27,53,87,0.15) !important;
 }
-.stTextArea textarea::placeholder { color: #7A96B0 !important; font-size: 14px !important; }
+.stTextArea textarea::placeholder { color: #6E88A4 !important; font-size: 14px !important; }
 
-/* SELECTBOX */
-.stSelectbox > div > div {
-    background: #FFFFFF !important; border: 2px solid #B8CCE0 !important;
-    border-radius: 8px !important; color: #0D1E32 !important;
+/* SELECTBOX — cover the visible box, the value text, the dropdown arrow,
+   and the popover list (which Streamlit renders separately) so text is
+   never invisible */
+.stSelectbox > div > div,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+    background: var(--white) !important; border: 2px solid var(--navy-border) !important;
+    border-radius: 8px !important; color: var(--navy-dark) !important;
     font-size: 14px !important; font-weight: 500 !important;
+}
+div[data-testid="stSelectbox"] div[data-baseweb="select"] * {
+    color: var(--navy-dark) !important;
+    background: transparent !important;
+}
+div[data-testid="stSelectbox"] svg { fill: var(--navy) !important; }
+div[data-baseweb="popover"] ul,
+ul[data-testid="stSelectboxVirtualDropdown"] {
+    background: var(--white) !important;
+}
+div[data-baseweb="popover"] li,
+ul[data-testid="stSelectboxVirtualDropdown"] li {
+    color: var(--navy-dark) !important;
+    background: var(--white) !important;
+}
+div[data-baseweb="popover"] li:hover,
+ul[data-testid="stSelectboxVirtualDropdown"] li:hover {
+    background: var(--navy-tint) !important;
+    color: var(--navy-dark) !important;
 }
 
 /* LABELS */
 .sec-label {
-    font-size: 11px; font-weight: 700; color: #1B3557;
+    font-size: 11px; font-weight: 700; color: var(--navy);
     text-transform: uppercase; letter-spacing: 0.12em;
     margin-bottom: 8px; display: block;
 }
@@ -305,117 +380,117 @@ section[data-testid="stSidebar"] .stButton>button.nav-active {
 /* HERO */
 .tm-hero { padding: 0.2rem 0 1rem 0; }
 .tm-hero h1 {
-    font-family: 'Lora', serif; font-size: 2.2rem; color: #0D1E32;
+    font-family: 'Lora', serif; font-size: 2.2rem; color: var(--navy-dark);
     line-height: 1.2; margin: 0 0 0.4rem 0; font-weight: 400;
 }
-.tm-hero h1 em { font-style: italic; color: #4F46E5; }
-.tm-hero p { font-size: 15px; color: #2A4A6A; margin: 0; line-height: 1.55; }
+.tm-hero h1 em { font-style: italic; color: var(--navy); }
+.tm-hero p { font-size: 15px; color: var(--navy-mid); margin: 0; line-height: 1.55; }
 
 /* TONE BAR */
 .tone-bar {
-    height: 3px; background: #4F46E5; border-radius: 2px;
+    height: 3px; background: var(--navy); border-radius: 2px;
     margin-top: -4px; margin-bottom: 2px;
 }
 
 /* ACTIVE TONE INFO CARD */
 .tone-info-card {
-    background: #EEECFC; border: 2px solid #A5A0F0;
+    background: var(--navy-tint); border: 2px solid var(--navy-border);
     border-radius: 10px; padding: 12px;
 }
 .tone-info-card .tic-label {
-    font-size: 11px; font-weight: 700; color: #1B3557;
+    font-size: 11px; font-weight: 700; color: var(--navy);
     text-transform: uppercase; letter-spacing: 0.1em;
     margin-bottom: 5px; display: block;
 }
-.tone-info-card .tic-name { font-size: 16px; font-weight: 600; color: #0D1E32; }
+.tone-info-card .tic-name { font-size: 16px; font-weight: 600; color: var(--navy-dark); }
 
 /* OUTPUT CARD */
 .out-card {
-    background: #FFFFFF; border: 2px solid #B8CCE0;
+    background: var(--white); border: 2px solid var(--navy-border);
     border-radius: 12px; padding: 20px; margin-top: 1rem;
 }
 .out-card .oc-header {
     display: flex; align-items: center; gap: 8px;
-    margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1.5px solid #D8E8F4;
+    margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1.5px solid var(--navy-tint-2);
 }
 .oc-tone-badge {
-    background: #4F46E5; color: #FFFFFF; font-size: 12px; font-weight: 600;
+    background: var(--navy); color: var(--white); font-size: 12px; font-weight: 600;
     padding: 4px 12px; border-radius: 20px;
 }
 .oc-lang-badge {
-    background: #EEECFC; color: #0D3A6A; font-size: 12px; font-weight: 600;
-    padding: 4px 12px; border-radius: 20px; border: 1.5px solid #A5A0F0;
+    background: var(--white); color: var(--navy); font-size: 12px; font-weight: 600;
+    padding: 4px 12px; border-radius: 20px; border: 1.5px solid var(--navy);
 }
 .out-card .oc-text {
-    font-size: 15px; color: #0D1E32; line-height: 1.8;
+    font-size: 15px; color: var(--navy-dark); line-height: 1.8;
     white-space: pre-wrap; font-weight: 400;
 }
 
 /* METRICS */
 .m-strip { display: flex; gap: 10px; margin-top: 1rem; }
 .m-box {
-    background: #FFFFFF; border: 2px solid #B8CCE0;
+    background: var(--white); border: 2px solid var(--navy-border);
     border-radius: 10px; padding: 12px 14px; flex: 1; text-align: center;
 }
 .m-box .m-lbl {
-    font-size: 11px; font-weight: 700; color: #1B3557;
+    font-size: 11px; font-weight: 700; color: var(--navy);
     text-transform: uppercase; letter-spacing: 0.09em;
     margin-bottom: 5px; display: block;
 }
 .m-box .m-val {
     font-family: 'Lora', serif; font-size: 22px; font-weight: 500;
-    color: #0D1E32; margin-bottom: 2px; display: block;
+    color: var(--navy-dark); margin-bottom: 2px; display: block;
 }
-.m-box .m-sub { font-size: 11px; color: #2A4A6A; font-weight: 500; display: block; }
-.sim-track { background: #C8DCF0; border-radius: 4px; height: 5px; margin-top: 8px; overflow: hidden; }
+.m-box .m-sub { font-size: 11px; color: var(--navy-mid); font-weight: 500; display: block; }
+.sim-track { background: var(--navy-tint-2); border-radius: 4px; height: 5px; margin-top: 8px; overflow: hidden; }
 .sim-fill { height: 100%; border-radius: 4px; }
 
 /* INFO NOTICE */
 .info-notice {
-    background: #EEECFC; border: 2px solid #A5A0F0; border-radius: 8px;
-    padding: 12px 16px; font-size: 14px; color: #0D3055;
+    background: var(--navy-tint); border: 2px solid var(--navy-border); border-radius: 8px;
+    padding: 12px 16px; font-size: 14px; color: var(--navy-dark);
     margin-top: 0.75rem; font-weight: 500; line-height: 1.5;
 }
 
 /* PAGE HEADER (History) */
 .page-header {
-    background: #1B3557; border-radius: 12px;
+    background: var(--navy); border-radius: 12px;
     padding: 20px 26px; margin-bottom: 1.25rem;
 }
 .page-header h2 {
-    font-family: 'Lora', serif; color: #FFFFFF;
+    font-family: 'Lora', serif; color: var(--white);
     font-size: 1.7rem; font-weight: 400; margin: 0 0 4px 0;
 }
-.page-header p { color: #A8C8E8; font-size: 14px; margin: 0; }
+.page-header p { color: #C8DCF0; font-size: 14px; margin: 0; }
 
 /* HISTORY CARDS */
 .h-card {
-    background: #FFFFFF; border: 2px solid #B8CCE0;
+    background: var(--white); border: 2px solid var(--navy-border);
     border-radius: 12px; padding: 16px 20px;
     margin-bottom: 10px; transition: border-color 0.15s;
 }
-.h-card:hover { border-color: #4F46E5; }
+.h-card:hover { border-color: var(--navy); }
 .h-meta {
-    font-size: 12px; font-weight: 700; color: #1B3557;
+    font-size: 12px; font-weight: 700; color: var(--navy);
     letter-spacing: 0.07em; text-transform: uppercase;
     margin-bottom: 10px; display: flex;
     align-items: center; flex-wrap: wrap; gap: 6px;
 }
 .h-orig {
-    font-size: 13px; color: #1B3A5A; margin-bottom: 10px;
-    border-left: 3px solid #4F46E5; padding: 8px 12px;
+    font-size: 13px; color: var(--navy-dark); margin-bottom: 10px;
+    border-left: 3px solid var(--navy); padding: 8px 12px;
     font-style: italic; line-height: 1.6;
-    background: #EEF5FC; border-radius: 0 6px 6px 0;
+    background: var(--navy-tint); border-radius: 0 6px 6px 0;
 }
-.h-rewritten { font-size: 14px; color: #0D1E32; line-height: 1.75; white-space: pre-wrap; }
+.h-rewritten { font-size: 14px; color: var(--navy-dark); line-height: 1.75; white-space: pre-wrap; }
 .badge-tone {
     display: inline-block; padding: 3px 11px; border-radius: 20px;
-    font-size: 11px; font-weight: 700; background: #4F46E5; color: #FFFFFF;
+    font-size: 11px; font-weight: 700; background: var(--navy); color: var(--white);
 }
 .badge-lang {
     display: inline-block; padding: 3px 11px; border-radius: 20px;
-    font-size: 11px; font-weight: 600; background: #EEECFC;
-    color: #0D3055; border: 1.5px solid #A5A0F0;
+    font-size: 11px; font-weight: 600; background: var(--white);
+    color: var(--navy); border: 1.5px solid var(--navy);
 }
 section[data-testid="stSidebar"] .stTextInput button {
     display: none !important;
@@ -459,7 +534,7 @@ with st.sidebar:
         <div style='font-family:"Lora",serif;font-size:1.4rem;color:#FFFFFF;font-weight:400;'>
            ✉ Tone Master AI
         </div>
-        <div style='font-size:11px;color:#A8C8E8;margin-top:4px;letter-spacing:.08em;
+        <div style='font-size:11px;color:#C8DCF0;margin-top:4px;letter-spacing:.08em;
                     text-transform:uppercase;font-weight:600;'>
             AI-Powered Email Rewriter
         </div>
@@ -471,7 +546,7 @@ with st.sidebar:
         mode = st.radio("", ["Login", "Sign Up"], horizontal=True)
 
         if mode == "Login":
-            st.markdown("<div style='font-size:15px;font-weight:700;color:#C8DFF2;margin-bottom:10px;'>Sign in to your account</div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size:15px;font-weight:700;color:#FFFFFF;margin-bottom:10px;'>Sign in to your account</div>", unsafe_allow_html=True)
             lu = st.text_input("Username", key="sb_lu", placeholder="Enter your username")
 
             lp = st.text_input(
@@ -495,7 +570,7 @@ with st.sidebar:
                 else:
                     st.warning("Please fill in both fields.")
         else:
-            st.markdown("<div style='font-size:15px;font-weight:700;color:#C8DFF2;margin-bottom:10px;'>Create an account</div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size:15px;font-weight:700;color:#FFFFFF;margin-bottom:10px;'>Create an account</div>", unsafe_allow_html=True)
             nu = st.text_input("Choose a username", key="sb_nu", placeholder="Must be unique")
             np_val = st.text_input("Choose a password", type="password", key="sb_np", placeholder="At least 6 characters")
             if st.button("Create Account", key="btn_signup"):
@@ -507,12 +582,12 @@ with st.sidebar:
                     st.warning("Please fill in both fields.")
 
         st.markdown("<hr style='border-color:#2E5A8A;margin:1rem 0;'>", unsafe_allow_html=True)
-        st.markdown("<div style='font-size:12px;color:#A8C8E8;line-height:1.6;'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='font-size:12px;color:#C8DCF0;line-height:1.6;'></div>", unsafe_allow_html=True)
 
     else:
         st.markdown(f"""
         <div style='margin-bottom:1rem;'>
-            <div style='font-size:11px;color:#A8C8E8;text-transform:uppercase;
+            <div style='font-size:11px;color:#C8DCF0;text-transform:uppercase;
                         letter-spacing:.09em;font-weight:700;margin-bottom:4px;'>Signed in as</div>
             <div style='font-size:17px;font-weight:600;color:#FFFFFF;'>{st.session_state.username}</div>
         </div>
@@ -753,7 +828,7 @@ if st.session_state.rewritten_email:
     orig_wc = len(orig_input.split()) if orig_input.strip() else 0
     new_wc  = len(result.split())
     diff    = new_wc - orig_wc
-    diff_color = "#14532D" if diff <= 0 else "#92400E"
+    diff_color = "#0D1E32" if diff <= 0 else "#2E5A8A"
 
     st.markdown(f"""
     <div class='m-strip'>
