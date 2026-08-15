@@ -189,11 +189,11 @@ section[data-testid="stSidebar"] { background: var(--navy) !important; }
 section[data-testid="stSidebar"] * { color: var(--white) !important; }
 section[data-testid="stSidebar"] .stTextInput input {
     background: var(--white) !important;
-    border: 2px solid var(--navy-soft) !important;
+    border: 1.5px solid var(--navy-soft) !important;
     color: var(--navy-dark) !important;
     border-radius: 7px !important;
     font-size: 14px !important;
-    padding: 8px 12px !important;
+    padding: 6px 10px !important;
     caret-color: var(--navy) !important;
 }
 section[data-testid="stSidebar"] .stTextInput input:focus {
@@ -222,9 +222,10 @@ section[data-testid="stSidebar"] .stButton>button span {
 }
 section[data-testid="stSidebar"] .stButton>button {
     background: var(--white) !important;
-    border: 2px solid var(--white) !important; font-weight: 600 !important;
+    border: 1.5px solid var(--white) !important; font-weight: 600 !important;
     border-radius: 7px !important; width: 100% !important;
-    padding: 10px 16px !important; font-size: 14px !important; margin-top: 3px !important;
+    padding: 7px 14px !important; font-size: 14px !important; margin-top: 3px !important;
+    min-height: 0 !important;
 }
 section[data-testid="stSidebar"] .stButton>button:hover {
     background: var(--navy-tint) !important; border-color: var(--navy-tint) !important;
@@ -252,8 +253,9 @@ section[data-testid="stSidebar"] .stButton>button:hover * {
 }
 .stButton>button {
     background: var(--white) !important;
-    border: 2px solid var(--navy-border) !important; border-radius: 8px !important;
+    border: 1.5px solid var(--navy-border) !important; border-radius: 8px !important;
     font-size: 14px !important; font-weight: 500 !important; transition: all 0.15s !important;
+    padding: 8px 14px !important; min-height: 0 !important;
 }
 .stButton>button:hover,
 .stButton>button:hover p,
@@ -280,9 +282,10 @@ button[data-testid="stBaseButton-primary"],
 .stButton>button[kind="primary"] div,
 .stButton>button[kind="primary"] span {
     background: var(--navy) !important; color: var(--white) !important;
-    border: none !important; font-size: 15px !important; font-weight: 600 !important;
-    padding: 12px 0 !important; border-radius: 8px !important;
+    border: none !important; font-size: 14px !important; font-weight: 600 !important;
+    padding: 8px 14px !important; border-radius: 8px !important; min-height: 0 !important;
 }
+
 .stButton>button[kind="primary"]:hover,
 .stButton>button[kind="primary"]:hover p,
 .stButton>button[kind="primary"]:hover div,
@@ -330,7 +333,7 @@ button[data-testid="stBaseButton-primary"],
 
 /* TEXT AREA */
 .stTextArea textarea {
-    background: var(--white) !important; border: 2px solid var(--navy-border) !important;
+    background: var(--white) !important; border: 1.5px solid var(--navy-border) !important;
     border-radius: 10px !important; font-size: 15px !important;
     color: var(--navy-dark) !important; padding: 12px !important; line-height: 1.7 !important;
     caret-color: var(--navy) !important;
@@ -341,30 +344,49 @@ button[data-testid="stBaseButton-primary"],
 }
 .stTextArea textarea::placeholder { color: #6E88A4 !important; font-size: 14px !important; }
 
-/* SELECTBOX — cover the visible box, the value text, the dropdown arrow,
-   and the popover list (which Streamlit renders separately) so text is
-   never invisible */
-.stSelectbox > div > div,
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
-    background: var(--white) !important; border: 2px solid var(--navy-border) !important;
-    border-radius: 8px !important; color: var(--navy-dark) !important;
-    font-size: 14px !important; font-weight: 500 !important;
+/* SELECTBOX — Streamlit re-injects this widget's own CSS after ours loads,
+   so a plain !important can still lose a specificity tie and render text
+   invisible. We repeat the class selector to force higher specificity, and
+   also reset -webkit-text-fill-color, which is what actually makes text
+   disappear even when "color" looks correct. */
+.stSelectbox.stSelectbox > div > div,
+.stSelectbox.stSelectbox div[data-baseweb="select"] > div {
+    background: var(--white) !important;
+    border: 1.5px solid var(--navy-border) !important;
+    border-radius: 8px !important;
+    min-height: 38px !important;
 }
-div[data-testid="stSelectbox"] div[data-baseweb="select"] * {
+.stSelectbox.stSelectbox div[data-baseweb="select"],
+.stSelectbox.stSelectbox div[data-baseweb="select"] *,
+.stSelectbox.stSelectbox div[data-baseweb="select"] div,
+.stSelectbox.stSelectbox div[data-baseweb="select"] span,
+.stSelectbox.stSelectbox div[data-baseweb="select"] p {
     color: var(--navy-dark) !important;
-    background: transparent !important;
+    -webkit-text-fill-color: var(--navy-dark) !important;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
 }
-div[data-testid="stSelectbox"] svg { fill: var(--navy) !important; }
+.stSelectbox.stSelectbox svg { fill: var(--navy) !important; }
+
+/* The dropdown list Streamlit pops open is rendered outside .stSelectbox,
+   appended straight to <body>, so it needs its own top-level rules */
+div[data-baseweb="popover"],
 div[data-baseweb="popover"] ul,
 ul[data-testid="stSelectboxVirtualDropdown"] {
     background: var(--white) !important;
 }
 div[data-baseweb="popover"] li,
-ul[data-testid="stSelectboxVirtualDropdown"] li {
+div[data-baseweb="popover"] li *,
+ul[data-testid="stSelectboxVirtualDropdown"] li,
+ul[data-testid="stSelectboxVirtualDropdown"] li * {
     color: var(--navy-dark) !important;
+    -webkit-text-fill-color: var(--navy-dark) !important;
     background: var(--white) !important;
 }
 div[data-baseweb="popover"] li:hover,
+div[data-baseweb="popover"] li[aria-selected="true"],
 ul[data-testid="stSelectboxVirtualDropdown"] li:hover {
     background: var(--navy-tint) !important;
     color: var(--navy-dark) !important;
@@ -394,8 +416,8 @@ ul[data-testid="stSelectboxVirtualDropdown"] li:hover {
 
 /* ACTIVE TONE INFO CARD */
 .tone-info-card {
-    background: var(--navy-tint); border: 2px solid var(--navy-border);
-    border-radius: 10px; padding: 12px;
+    background: var(--navy-tint); border: 1.5px solid var(--navy-border);
+    border-radius: 10px; padding: 10px 12px;
 }
 .tone-info-card .tic-label {
     font-size: 11px; font-weight: 700; color: var(--navy);
@@ -406,8 +428,8 @@ ul[data-testid="stSelectboxVirtualDropdown"] li:hover {
 
 /* OUTPUT CARD */
 .out-card {
-    background: var(--white); border: 2px solid var(--navy-border);
-    border-radius: 12px; padding: 20px; margin-top: 1rem;
+    background: var(--white); border: 1.5px solid var(--navy-border);
+    border-radius: 12px; padding: 18px; margin-top: 1rem;
 }
 .out-card .oc-header {
     display: flex; align-items: center; gap: 8px;
@@ -429,8 +451,8 @@ ul[data-testid="stSelectboxVirtualDropdown"] li:hover {
 /* METRICS */
 .m-strip { display: flex; gap: 10px; margin-top: 1rem; }
 .m-box {
-    background: var(--white); border: 2px solid var(--navy-border);
-    border-radius: 10px; padding: 12px 14px; flex: 1; text-align: center;
+    background: var(--white); border: 1.5px solid var(--navy-border);
+    border-radius: 10px; padding: 10px 12px; flex: 1; text-align: center;
 }
 .m-box .m-lbl {
     font-size: 11px; font-weight: 700; color: var(--navy);
@@ -447,8 +469,8 @@ ul[data-testid="stSelectboxVirtualDropdown"] li:hover {
 
 /* INFO NOTICE */
 .info-notice {
-    background: var(--navy-tint); border: 2px solid var(--navy-border); border-radius: 8px;
-    padding: 12px 16px; font-size: 14px; color: var(--navy-dark);
+    background: var(--navy-tint); border: 1.5px solid var(--navy-border); border-radius: 8px;
+    padding: 10px 14px; font-size: 14px; color: var(--navy-dark);
     margin-top: 0.75rem; font-weight: 500; line-height: 1.5;
 }
 
@@ -465,8 +487,8 @@ ul[data-testid="stSelectboxVirtualDropdown"] li:hover {
 
 /* HISTORY CARDS */
 .h-card {
-    background: var(--white); border: 2px solid var(--navy-border);
-    border-radius: 12px; padding: 16px 20px;
+    background: var(--white); border: 1.5px solid var(--navy-border);
+    border-radius: 12px; padding: 14px 18px;
     margin-bottom: 10px; transition: border-color 0.15s;
 }
 .h-card:hover { border-color: var(--navy); }
